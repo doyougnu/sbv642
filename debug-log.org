@@ -1,0 +1,39 @@
+#+title: Debug Log
+#+description: A log of what was tried and what happened
+
+* Initial Description
+We have a ~sbv~ program that is 10x slower when compiled campared to when
+run in interpreted mode. For example:
+    #+begin_src
+Wed Mar  1 01:12:50 PM UTC 2023 The Glorious Glasgow Haskell Compilation System, version 8.8.4
+Wed Mar  1 01:12:50 PM UTC 2023 Running compiled version
+Wed Mar  1 01:12:51 PM UTC 2023 [1 of 1] Compiling Issue642         ( Issue642.hs, Issue642.o )
+Linking Issue642 ...
+Wed Mar  1 01:12:51 PM UTC 2023 Compiled, running
+
+real	42m14.519s
+user	42m11.150s
+sys	0m3.186s
+Wed Mar  1 01:55:05 PM UTC 2023
+Wed Mar  1 01:55:05 PM UTC 2023 Done, Cleanup2
+Wed Mar  1 01:55:05 PM UTC 2023
+Wed Mar  1 01:55:05 PM UTC 2023 Interpreted, running
+
+real	1m47.442s
+user	1m44.933s
+sys	0m2.781s
+Wed Mar  1 01:56:53 PM UTC 2023
+Wed Mar  1 01:56:53 PM UTC 2023 Done
+    #+end_src
+
+compare 44 minutes to 1 minute 47 seconds
+
+* Hypotheses
+
+** This is a GHC regression
+
+** Test
+Tested with GHC 8.8, 8.10, 9.2
+
+** Result
+Same behavior observed for each GHC
